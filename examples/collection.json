@@ -1,0 +1,127 @@
+{
+  "id": "mbta-gtfs-rt",
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://example.com/stac-extensions/gtfs-rt/v1.0.0/schema.json"
+  ],
+  "title": "MBTA GTFS-RT Feed Archive",
+  "description": "Archive of GTFS-RT realtime feed snapshots from the Massachusetts Bay Transportation Authority (MBTA), serving the greater Boston metropolitan area. Includes vehicle positions, trip updates, and service alerts.",
+  "keywords": [
+    "transit",
+    "gtfs-rt",
+    "realtime",
+    "boston",
+    "mbta",
+    "vehicles",
+    "public-transportation"
+  ],
+  "license": "proprietary",
+  "providers": [
+    {
+      "name": "Massachusetts Bay Transportation Authority",
+      "description": "Public transit agency serving the greater Boston area including subway, bus, commuter rail, and ferry services.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.mbta.com"
+    },
+    {
+      "name": "Transit Data Archive",
+      "description": "Archival service for historical transit data.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://example.com/transit-archive"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -71.2583,
+          42.1974,
+          -70.9176,
+          42.4968
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2024-01-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "gtfs-rt:feed_types": [
+      "vehicle_positions",
+      "trip_updates",
+      "service_alerts"
+    ],
+    "gtfs-rt:incrementality": [
+      "FULL_DATASET"
+    ],
+    "gtfs-rt:entity_count": {
+      "minimum": 0,
+      "maximum": 2500
+    },
+    "gtfs-rt:vehicle_count": {
+      "minimum": 0,
+      "maximum": 800
+    },
+    "gtfs-rt:trip_update_count": {
+      "minimum": 0,
+      "maximum": 1500
+    },
+    "gtfs-rt:alert_count": {
+      "minimum": 0,
+      "maximum": 50
+    }
+  },
+  "gtfs-rt:agency_id": "mbta",
+  "gtfs-rt:agency_name": "Massachusetts Bay Transportation Authority",
+  "gtfs-rt:feed_url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+  "gtfs-rt:static_feed_url": "https://cdn.mbta.com/MBTA_GTFS.zip",
+  "gtfs-rt:feed_types": [
+    "vehicle_positions",
+    "trip_updates",
+    "service_alerts"
+  ],
+  "gtfs-rt:gtfs_rt_version": "2.0",
+  "gtfs-rt:update_frequency_seconds": 15,
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "self",
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./item.json",
+      "type": "application/geo+json",
+      "title": "MBTA Feed Snapshot 2024-03-15T14:30:00Z"
+    },
+    {
+      "rel": "item",
+      "href": "./item-vehicle-focus.json",
+      "type": "application/geo+json",
+      "title": "MBTA Vehicle Position Snapshot 2024-03-15T14:30:15Z"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://www.mbta.com/developers/gtfs-realtime",
+      "type": "text/html",
+      "title": "MBTA GTFS-RT Developer Resources"
+    }
+  ]
+}

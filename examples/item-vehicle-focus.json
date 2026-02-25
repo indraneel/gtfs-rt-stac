@@ -1,0 +1,109 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://example.com/stac-extensions/gtfs-rt/v1.0.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "mbta-gtfs-rt-vehicles-20240315T143015Z",
+  "bbox": [
+    -71.2488,
+    42.2067,
+    -70.9251,
+    42.4901
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-71.2488, 42.2067],
+        [-70.9251, 42.2067],
+        [-70.9251, 42.4901],
+        [-71.2488, 42.4901],
+        [-71.2488, 42.2067]
+      ]
+    ]
+  },
+  "properties": {
+    "title": "MBTA Vehicle Positions 2024-03-15T14:30:15Z",
+    "description": "Vehicle position-focused GTFS-RT snapshot from the MBTA during afternoon peak. Includes detailed vehicle statistics: speed, congestion levels, and stop status breakdowns.",
+    "datetime": "2024-03-15T14:30:15Z",
+    "created": "2024-03-15T14:30:20Z",
+    "updated": "2024-03-15T14:30:20Z",
+    "gtfs-rt:feed_timestamp": 1710513015,
+    "gtfs-rt:feed_version": "Winter2024",
+    "gtfs-rt:incrementality": "FULL_DATASET",
+    "gtfs-rt:entity_count": 578,
+    "gtfs-rt:vehicle_count": 578,
+    "gtfs-rt:trip_update_count": 0,
+    "gtfs-rt:alert_count": 0,
+    "gtfs-rt:vehicles_in_transit": 412,
+    "gtfs-rt:vehicles_stopped": 153,
+    "gtfs-rt:avg_speed_mps": 8.7,
+    "gtfs-rt:congestion_severe_count": 23
+  },
+  "collection": "mbta-gtfs-rt",
+  "links": [
+    {
+      "rel": "collection",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "parent",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "derived_from",
+      "href": "https://cdn.mbta.com/MBTA_GTFS.zip",
+      "type": "application/zip",
+      "title": "MBTA Static GTFS Feed"
+    }
+  ],
+  "assets": {
+    "feed": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143015_vehicles.pb",
+      "type": "application/x-protobuf",
+      "title": "GTFS-RT Vehicle Positions Protobuf",
+      "description": "Original GTFS-RT VehiclePositions feed in Protocol Buffer format.",
+      "roles": [
+        "data"
+      ]
+    },
+    "feed-json": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143015_vehicles.json",
+      "type": "application/json",
+      "title": "GTFS-RT Vehicle Positions JSON",
+      "description": "JSON representation of the vehicle positions feed.",
+      "roles": [
+        "data"
+      ]
+    },
+    "vehicle-positions": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143015_vehicles.geojson",
+      "type": "application/geo+json",
+      "title": "Vehicle Positions GeoJSON",
+      "description": "GeoJSON FeatureCollection with point geometry for each vehicle, including speed, bearing, congestion level, and occupancy status as properties.",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143015_vehicles_map.png",
+      "type": "image/png",
+      "title": "Vehicle Map",
+      "description": "Map visualization showing all 578 vehicle positions, color-coded by congestion level.",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

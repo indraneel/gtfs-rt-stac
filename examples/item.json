@@ -1,0 +1,123 @@
+{
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://example.com/stac-extensions/gtfs-rt/v1.0.0/schema.json"
+  ],
+  "type": "Feature",
+  "id": "mbta-gtfs-rt-20240315T143000Z",
+  "bbox": [
+    -71.2541,
+    42.2012,
+    -70.9203,
+    42.4935
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-71.2541, 42.2012],
+        [-70.9203, 42.2012],
+        [-70.9203, 42.4935],
+        [-71.2541, 42.4935],
+        [-71.2541, 42.2012]
+      ]
+    ]
+  },
+  "properties": {
+    "title": "MBTA Feed Snapshot 2024-03-15T14:30:00Z",
+    "description": "Combined GTFS-RT feed snapshot from the MBTA, captured during afternoon peak service. Contains vehicle positions, trip updates, and service alerts.",
+    "datetime": "2024-03-15T14:30:00Z",
+    "created": "2024-03-15T14:30:05Z",
+    "updated": "2024-03-15T14:30:05Z",
+    "gtfs-rt:feed_timestamp": 1710513000,
+    "gtfs-rt:feed_version": "Winter2024",
+    "gtfs-rt:incrementality": "FULL_DATASET",
+    "gtfs-rt:entity_count": 1847,
+    "gtfs-rt:vehicle_count": 582,
+    "gtfs-rt:trip_update_count": 1243,
+    "gtfs-rt:alert_count": 22
+  },
+  "collection": "mbta-gtfs-rt",
+  "links": [
+    {
+      "rel": "collection",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "parent",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "MBTA GTFS-RT Feed Archive"
+    },
+    {
+      "rel": "derived_from",
+      "href": "https://cdn.mbta.com/MBTA_GTFS.zip",
+      "type": "application/zip",
+      "title": "MBTA Static GTFS Feed"
+    }
+  ],
+  "assets": {
+    "feed": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_feed.pb",
+      "type": "application/x-protobuf",
+      "title": "GTFS-RT Protobuf Feed",
+      "description": "Original GTFS-RT feed captured in Protocol Buffer format.",
+      "roles": [
+        "data"
+      ]
+    },
+    "feed-json": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_feed.json",
+      "type": "application/json",
+      "title": "GTFS-RT JSON Feed",
+      "description": "JSON representation of the GTFS-RT feed, converted from protobuf.",
+      "roles": [
+        "data"
+      ]
+    },
+    "vehicle-positions": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_vehicles.geojson",
+      "type": "application/geo+json",
+      "title": "Vehicle Positions GeoJSON",
+      "description": "GeoJSON FeatureCollection of all vehicle positions in this snapshot.",
+      "roles": [
+        "data"
+      ]
+    },
+    "trip-updates": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_trips.json",
+      "type": "application/json",
+      "title": "Trip Updates",
+      "description": "Extracted trip update entities with delay and schedule deviation information.",
+      "roles": [
+        "data"
+      ]
+    },
+    "alerts": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_alerts.json",
+      "type": "application/json",
+      "title": "Service Alerts",
+      "description": "Extracted service alert entities.",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "https://example.com/transit-archive/mbta-gtfs-rt/2024/03/15/143000_map.png",
+      "type": "image/png",
+      "title": "Vehicle Map Thumbnail",
+      "description": "Map visualization showing vehicle positions at time of capture.",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}
