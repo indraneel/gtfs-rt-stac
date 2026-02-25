@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/stac-extensions/gtfs-rt/v1.0.0/schema.json",
+  "title": "GTFS-RT STAC Extension",
+  "description": "STAC extension for cataloging GTFS-RT (General Transit Feed Specification - Realtime) data archives and snapshots.",
+  "type": "object",
+  "required": ["stac_extensions"],
+  "properties": {
+    "stac_extensions": {
+      "type": "array",
+      "contains": {
+        "const": "https://example.com/stac-extensions/gtfs-rt/v1.0.0/schema.json"
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "$comment": "Schema for STAC Collections",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "const": "Collection"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/collection_fields"
+        }
+      ]
+    },
+    {
+      "$comment": "Schema for STAC Items",
+      "type": "object",
+      "required": ["type", "properties"],
+      "properties": {
+        "type": {
+          "const": "Feature"
+        },
+        "properties": {
+          "$ref": "#/definitions/item_fields"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "collection_fields": {
+      "type": "object",
+      "properties": {
+        "gtfs-rt:agency_id": {
+          "type": "string",
+          "title": "Agency ID",
+          "description": "Unique identifier for the transit agency."
+        },
+        "gtfs-rt:agency_name": {
+          "type": "string",
+          "title": "Agency Name",
+          "description": "Human-readable name of the transit agency."
+        },
+        "gtfs-rt:feed_url": {
+          "type": "string",
+          "format": "uri",
+          "title": "Feed URL",
+          "description": "URL of the live GTFS-RT feed."
+        },
+        "gtfs-rt:static_feed_url": {
+          "type": "string",
+          "format": "uri",
+          "title": "Static Feed URL",
+          "description": "URL of the associated static GTFS feed."
+        },
+        "gtfs-rt:feed_types": {
+          "type": "array",
+          "title": "Feed Types",
+          "description": "Types of GTFS-RT entities available in the feed.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "vehicle_positions",
+              "trip_updates",
+              "service_alerts"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "gtfs-rt:gtfs_rt_version": {
+          "type": "string",
+          "title": "GTFS-RT Version",
+          "description": "Version of the GTFS-RT specification used by the feed (e.g., '2.0')."
+        },
+        "gtfs-rt:update_frequency_seconds": {
+          "type": "number",
+          "title": "Update Frequency",
+          "description": "Expected feed update interval in seconds.",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "gtfs-rt:agency_id",
+        "gtfs-rt:agency_name",
+        "gtfs-rt:feed_url",
+        "gtfs-rt:feed_types"
+      ]
+    },
+    "item_fields": {
+      "type": "object",
+      "properties": {
+        "gtfs-rt:feed_timestamp": {
+          "type": "integer",
+          "title": "Feed Timestamp",
+          "description": "POSIX timestamp from the GTFS-RT FeedHeader indicating when the feed was created."
+        },
+        "gtfs-rt:feed_version": {
+          "type": "string",
+          "title": "Feed Version",
+          "description": "Matches feed_info.feed_version from the associated static GTFS feed."
+        },
+        "gtfs-rt:incrementality": {
+          "type": "string",
+          "title": "Incrementality",
+          "description": "Whether this feed snapshot is a full dataset or a differential update.",
+          "enum": [
+            "FULL_DATASET",
+            "DIFFERENTIAL"
+          ]
+        },
+        "gtfs-rt:entity_count": {
+          "type": "integer",
+          "title": "Entity Count",
+          "description": "Total number of FeedEntity objects in the snapshot.",
+          "minimum": 0
+        },
+        "gtfs-rt:vehicle_count": {
+          "type": "integer",
+          "title": "Vehicle Count",
+          "description": "Number of VehiclePosition entities in the snapshot.",
+          "minimum": 0
+        },
+        "gtfs-rt:trip_update_count": {
+          "type": "integer",
+          "title": "Trip Update Count",
+          "description": "Number of TripUpdate entities in the snapshot.",
+          "minimum": 0
+        },
+        "gtfs-rt:alert_count": {
+          "type": "integer",
+          "title": "Alert Count",
+          "description": "Number of Alert entities in the snapshot.",
+          "minimum": 0
+        },
+        "gtfs-rt:vehicles_in_transit": {
+          "type": "integer",
+          "title": "Vehicles In Transit",
+          "description": "Number of vehicles with status IN_TRANSIT_TO.",
+          "minimum": 0
+        },
+        "gtfs-rt:vehicles_stopped": {
+          "type": "integer",
+          "title": "Vehicles Stopped",
+          "description": "Number of vehicles with status STOPPED_AT.",
+          "minimum": 0
+        },
+        "gtfs-rt:avg_speed_mps": {
+          "type": "number",
+          "title": "Average Speed",
+          "description": "Average vehicle speed in meters per second.",
+          "minimum": 0
+        },
+        "gtfs-rt:congestion_severe_count": {
+          "type": "integer",
+          "title": "Severe Congestion Count",
+          "description": "Number of vehicles reporting SEVERE_CONGESTION level.",
+          "minimum": 0
+        },
+        "gtfs-rt:alerts_by_cause": {
+          "type": "object",
+          "title": "Alerts by Cause",
+          "description": "Count of alerts grouped by cause type.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "gtfs-rt:alerts_by_effect": {
+          "type": "object",
+          "title": "Alerts by Effect",
+          "description": "Count of alerts grouped by effect type.",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "gtfs-rt:alerts_severe_count": {
+          "type": "integer",
+          "title": "Severe Alert Count",
+          "description": "Number of alerts with SEVERE severity level.",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "gtfs-rt:feed_timestamp",
+        "gtfs-rt:incrementality",
+        "gtfs-rt:entity_count"
+      ]
+    }
+  }
+}
